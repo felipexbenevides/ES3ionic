@@ -10,9 +10,9 @@
 <p>Olá, este app é um simples app de fotografia que registra a imagem,
   a localização geográfica e os dados do acelerômetro</p>
   <ion-label>Localização</ion-label>
-  <p></p>
+  <p>{{gps}}</p>
   <ion-label>Sensor</ion-label>
-  <p></p>
+  <p>{{sensor}}</p>
   <ion-fab bottom right>
     <button ion-fab mini (click)="takePicture()"><ion-icon name="camera"></ion-icon></button>
   </ion-fab>
