@@ -52,27 +52,32 @@ export class HomePage {
          });
       });
     }
+/**
+ * getSensor
+ */
+public getSensor() {
+  this.gps = "long: " + this.position.coords.longitude + " lat: " + this.position.coords.latitude;
+  // Get the device current acceleration
+  this.deviceMotion.getCurrentAcceleration().then(
+    (acceleration: DeviceMotionAccelerationData) => {
+      console.log(acceleration);
+      this.sensor = "x: "+acceleration.x + " y: "+acceleration.y+ " z: "+acceleration.z;              
+    },
+    (error: any) => console.log(error)
+  );
 
-  getSensor(){
-            this.gps = "long: " + this.position.coords.longitude + " lat: " + this.position.coords.latitude;
-            // Get the device current acceleration
-            this.deviceMotion.getCurrentAcceleration().then(
-              (acceleration: DeviceMotionAccelerationData) => {
-                console.log(acceleration);
-                this.sensor = "x: "+acceleration.x + " y: "+acceleration.y+ " z: "+acceleration.z;              
-              },
-              (error: any) => console.log(error)
-            );
-    
-            // Watch device acceleration
-            var subscription = this.deviceMotion.watchAcceleration().subscribe((acceleration: DeviceMotionAccelerationData) => {
-              console.log(acceleration);
-            });
-    
-            // Stop watch
-            subscription.unsubscribe();
+  // Watch device acceleration
+  var subscription = this.deviceMotion.watchAcceleration().subscribe((acceleration: DeviceMotionAccelerationData) => {
+    console.log(acceleration);
+  });
+
+  // Stop watch
+  subscription.unsubscribe();
   }
-  takePicture(){
+  /**
+   * takePicture
+   */
+  public takePicture() {
     console.log('Take Picture');
     this.camera.getPicture(this.options).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
